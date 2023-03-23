@@ -1,0 +1,453 @@
+<?php
+    session_start();
+    if(isset($_SESSION['nombre_usuario'])) {
+    $nombre_usuario = $_SESSION['nombre_usuario'];
+} else {
+    header('Location:../../index.php');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listado</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <!--Datatable plugin CSS file -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    <!--jQuery library file -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+    </script> 
+    <!--Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Right navbar links -->
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../index2.php" class="nav-link">Inicio</a>
+      </li>
+    </ul>
+      <ul class="navbar-nav ml-auto " >
+        <li class="nav-item dropdown "style="padding-left:75px;">
+        
+          <a class="nav-link dropdown-toggle text-sm" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user-tie"></i> <?php echo $nombre_usuario; ?>
+          </a>
+          <ul class="dropdown-menu"style="width:20px;">
+            <li >
+              <a class="dropdown-item text-sm" href="../../modelo/logout.php">
+              <i class="fa-solid fa-right-from-bracket"></i> salir</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <img src="../dist/img/descarga.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light" style="font-size:16px;">
+          KLEBER FRANCO CRUZ
+        </span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="info">
+            <a href="#" class="d-block"><i class="fa-solid fa-user"></i> Usuario:
+            <?php echo $nombre_usuario; ?>
+            </a>
+          </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa-solid fa-restroom"></i>
+               <p>
+                 Pariente
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../representante/vt_lista_rep.php"class="nav-link">
+                  <i class="fa-solid fa-address-book"></i> Listado representantes
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa-solid fa-users"></i>
+               <p>
+                 Estudiantes
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../estudiante/lista_estudiante.php"class="nav-link">
+                  <i class="fa-solid fa-address-book"></i> Listado general matutina
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../estudiante/lista_estudiantenoc.php"class="nav-link">
+                  <i class="fa-solid fa-address-book"></i> Listado general nocturna
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../estudiante/vt_ingresar_est.php" class="nav-link">
+                  <i class="fa-solid fa-plus"></i> Agregar matutina
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../estudiante/vt_ingresar_nocturna.php" class="nav-link">
+                  <i class="fa-solid fa-plus"></i> Agregar nocturna
+                </a>
+              </li>
+            </ul> 
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa-sharp fa-solid fa-file-invoice"></i>
+                <p>
+                 Matricula
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../matricula/v_lista.php"class="nav-link">
+                <i class="fa-solid fa-clipboard-list"></i> matriculados matutina
+                </a>
+              </li>
+          
+              <li class="nav-item">
+                <a href="../matricula/v_listanoc.php"class="nav-link">
+                <i class="fa-solid fa-clipboard-list"></i> matriculados nocturna
+                </a>
+              </li>
+              <hr>
+              <li class="nav-item">
+                <a href="../matricula/v_litabaja.php"class="nav-link">
+                <i class="fa-solid fa-clipboard-list"></i> dados de baja matutina
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../matricula/v_listabajanoc.php"class="nav-link">
+                <i class="fa-solid fa-clipboard-list"></i> dados de baja nocturna
+                </a>
+              </li>
+              <hr>
+              <li class="nav-item">
+                <a href="../matricula/v_vespertina.php"class="nav-link">
+                    <i class="fa-solid fa-sun"></i> Listado matutina
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="../matricula/v_nocrtuna.php"class="nav-link">
+                    <i class="fa-solid fa-moon"></i> Listado nocturna
+                </a>
+              </li>
+              <hr>
+              <li class="nav-item">
+                <a href="../matricula/v_matricula.php" class="nav-link">
+                <i class="fa-solid fa-file-circle-plus"></i> matricula matutina
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../matricula/v_matricula_noc.php" class="nav-link">
+                <i class="fa-solid fa-file-circle-plus"></i> matricula nocturna
+                </a>
+              </li>
+              <hr>
+              <li class="nav-item">
+                <a href="../reportes/reporte_matutina.php" class="nav-link">
+                  <i class="fa-solid fa-file-csv"></i> reportes matutina
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../reportes/reporte_nocturna.php" class="nav-link">
+                  <i class="fa-solid fa-file-csv"></i> reportes nocturna
+                </a>
+              </li>
+              <hr>
+            </ul> 
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa-solid fa-chalkboard-user"></i>
+                <p>
+                 Cursos
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../periodo/v_periodo.php"class="nav-link">
+                <i class="fa-solid fa-clipboard-list"></i> periodo
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../especialidades/v_especialidad.php" class="nav-link">
+                <i class="fa-solid fa-people-group"></i> especialidades
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../nivel/v_nivel.php" class="nav-link">
+                <i class="fa-solid fa-layer-group"></i> nivel
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../secciones/v_seccion.php" class="nav-link">
+                <i class="fa-solid fa-users-between-lines"></i> secciones
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../paralelos/v_paralelo.php" class="nav-link">
+                  <i class="fa-regular fa-object-group"></i> paralelos
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a href="../tutor/v_tutor.php" class="nav-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> tutor
+                  </a>
+              </li>
+            </ul> 
+          </li>
+        </ul>
+      </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Búsqueda por curso y paralelo</h1>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+
+      <section class="content">
+        <!-- Default box -->
+        <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Información</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <div class="container-fluid">
+              <form action="" method="post">
+          
+          <div class="row">
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label for="">curso</label>
+                  <select class="form-control select2" style="width: 100%;" name="nivel_m" required>
+                  <option style="justify-content: center;" selected disabled>--SELECCIONE El CURSO--</option>
+                  <?php
+                      include("../../conexion/conexion.php");
+                      $sql = $mysqli->query("SELECT * FROM niveles");
+                      while ($resultado = $sql->fetch_assoc()) {
+                      echo "<option value='" . $resultado['Idnivel'] . "'>" . $resultado['nivel'] . "</option>";
+                      }
+                   ?>  
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label for="">paralelo</label>
+                  <select class="form-control select2" style="width: 100%;" name="paralelo" >
+                      <option style="justify-content: center;" selected disabled>--SELECCIONE El PARALELO--</option>
+                      <?php
+                          include("../../conexion/conexion.php");
+                          $sql = $mysqli->query("SELECT * FROM paralelos");
+                          while ($resultado = $sql->fetch_assoc()) {
+                          echo "<option value='" . $resultado['IdParalelo'] . "'>" . $resultado['paralelo'] . "</option>";
+                          }
+                      ?>  
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group" style="padding-top: 31px;">
+                  <button class="btn btn-info" type="submit" name="buscar">
+                  <i class="fa-solid fa-magnifying-glass"></i> buscar
+                  </button>
+              </div>
+          </div>
+          </form>
+            <script>
+              $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                  var value = $(this).val().toLowerCase();
+                  $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                  });
+                });
+              });
+            </script>
+          </div>
+          <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Nombres</th>
+                    <th>fecha inscripcion</th>
+                    <th>nivel</th>
+                    <th>seccion</th>
+                    <th>paralelo</th>
+                    <th>especialidad</th>
+                    <th>tutor</th>
+                    <th>periodo lectivo</th>
+                    <th>acciones</th>
+                    
+                  
+                </thead>
+                <tbody id="myTable">
+                <?php
+                    include "../../conexion/conexion.php";
+                    
+                    if(isset($_POST["buscar"])){
+                        $nivel= $_POST['nivel_m'];
+                        $paralelo=$_POST['paralelo'];
+                     
+                          $sql ="SELECT * FROM matriculanoc 
+                          INNER JOIN nocturna on matriculanoc.id_nocturna= nocturna.IdNocturna
+                          INNER JOIN especialidades on matriculanoc.especialidad_id = especialidades.IdEspecialidad 
+                          INNER JOIN niveles on matriculanoc.nivel_id = niveles.Idnivel  
+                          INNER JOIN paralelos on matriculanoc.paralelo_id= paralelos.IdParalelo
+                          INNER JOIN periodos on matriculanoc.periodo_id= periodos.IdPeriodo
+                          INNER JOIN secciones on matriculanoc.seccion_id= secciones.IdSeccion 
+                          INNER JOIN  tutor on matriculanoc.tutor_id=tutor.IdTutor
+                          WHERE nivel_id=".$nivel." AND paralelo_id=".$paralelo." ";
+                          $result = mysqli_query($mysqli,$sql);
+                        while($datos=$result->fetch_assoc()){
+                          ?>
+                          </tr>
+                          <td><?php echo $datos["nombres_noc"];?></td>
+                          <td><?php echo $datos["fecha_inscrip"];?></td>
+                          <td><?php echo $datos["nivel"];?></td>
+                          <td><?php echo $datos["seccion"];?></td>
+                          <td><?php echo $datos["paralelo"];?></td>
+                          <td><?php echo $datos["especialidad"];?></td>
+                          <td><?php echo $datos["nombres"];?></td>
+                          <td><?php echo $datos["periodo"];?></td>
+                          <td>
+                              <a href="./v_editar_matricula.php?IdMatriculanoc=<?php echo $datos['IdMatriculanoc'] ?>" class="btn btn-info btn-sm"><i class='fa-solid fa-eye'></i> ver
+                            </a>
+                          </td>
+                          <?php
+                            ;
+                          ?>
+                          </tr>
+                          <?php
+                        } 
+                    }                  
+                    ?>
+                   
+                </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+      </div>
+      <strong>Copyright &copy; INSTPP</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../plugins/jszip/jszip.min.js"></script>
+<script src="../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</body>
+
+</html>
